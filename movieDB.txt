@@ -1,4 +1,31 @@
-New Title1a	2020	comedy	Will Smith, Julia Roberts	A fun comedy about two 	0	3.3	12
-movie2	1998	action	Bruce Willis, Bette Midler	When a bank is robbed, who will stop the runaway train?	1	2.4	30
-movie3	2016	drama	Anne Hathaway, Simon Simonons	Romance on the farmyard	1	4.5	34
-movie4	2016	drama	Anne Hathaway, Simon Simonons	Romance on the farmyard	1	4.1	44
+New Title0.25260220962784874	2020	comedy	Will Smith, Julia Roberts	A fun comedy about two bank tellers	0	45	12
+movie2	1998	action	Bruce Willis, Bette Midler	When a bank is robbed, who will stop the runaway train?	1	240	30
+movie3	2016	drama	Anne Hathaway, Simon Simonons	Romance on the farmyard	1	165	34
+movie4	2016	drama	Anne Hathaway, Simon Simonons	Romance on the farmyard	1	41	44
+A new movie0.7911200072110885	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 201	1	0	0
+A new movie0.37132642547869044	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.09828083929569498	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.21570070462274282	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.9008656835727883	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.41717201540602555	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.14006833134016805	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.010414716886927522	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.09148582989634024	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.6540397876298715	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.3094764735622867	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.18729104287308906	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.6218636180917644	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.5316269766591906	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.9049481979057451	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.7127467660938135	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.7125288312529103	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.31698194807922575	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.9902216157891427	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.3895297821560517	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.19805474989258487	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.4890004546546032	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.2491038425660489	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.7111044780845313	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.05269798152392591	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.5836655655004248	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
+A new movie0.6250296756646305	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	0	0	0
