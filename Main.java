@@ -3,7 +3,7 @@ package database;
 public class Main {
 	
 	public static void main(String[] args) {
-		// TODO Remove after testing!!
+		// TODO CLASS ISN'T PART OF THE ASSIGNMENT. DELETE ME!!!!
 
 	// Test MovieDB Class: Read from database and create a movie object for each record found
 		MovieDB[] movie;
@@ -12,8 +12,8 @@ public class Main {
 	// Test MovieDB Class: Search records
 		
 		// define search criteria
-		String searchCriteria = "Hathaway";
-		int searchType = 3; 	// Supported search types: 0 = title, 1 = year, 2 = genre, 3 = cast
+		String searchCriteria = "2016";
+		int searchType = 1; 	// Supported search types: 0 = title, 1 = year, 2 = genre, 3 = cast
 		boolean restrictResults = true;
 		
 		MovieDB.searchMovies(movie, searchCriteria, searchType, restrictResults);

@@ -10,6 +10,7 @@ public class MovieDB {
 	private static int movieCount;
 	
 	// declaring instance variables
+	// TODO Add director field
 	private String movieTitle;
 	private int movieYear;
 	private String movieGenre;
@@ -166,7 +167,7 @@ public class MovieDB {
 				if(movie[i].movieGenre.equals(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 3: // search cast
-				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true;
+				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true; // .contains is case sensiive! add regex
 				break;
 			}
 			
