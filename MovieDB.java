@@ -4,22 +4,24 @@ import java.io.*;
 
 public class MovieDB {
 	
-	static String dbFileName = "movieDB.txt"; // filename for external text file storing movie database
-	static int dbRecordCount;
-	static int movieCount;
+	// declaring class variables
+	private static String dbFileName = "movieDB.txt"; // filename for external text file storing movie database
+	private static int dbRecordCount;
+	private static int movieCount;
 	
-	String movieTitle;
-	int movieYear;
-	String movieGenre;
-	String movieCast;
-	String movieDescription;
-	boolean ageRestricted;
-	int ratingTotal;
-	int ratingCount;
-	double ratingAvg;
-	boolean isMatch;
+	// declaring instance variables
+	private String movieTitle;
+	private int movieYear;
+	private String movieGenre;
+	private String movieCast;
+	private String movieDescription;
+	private boolean ageRestricted;
+	private int ratingTotal;
+	private int ratingCount;
+	private double ratingAvg;
+	private boolean isMatch;
 	
-	// movie object constructor (used when reading from eternal datafile)
+	// movie object constructor (used when reading from external datafile)
 	public MovieDB(String movieTitle, String movieYear, String movieGenre, String movieCast, 
 			String movieDescription, String ageRestricted, String ratingTotal, String ratingCount) {
 		
@@ -47,8 +49,7 @@ public class MovieDB {
 		}
 		
 		isMatch = false;
-		
-
+	
 	}
 	
 	// movie object constructor (used when creating a new movie object, prior to appending it to the database)
@@ -65,9 +66,8 @@ public class MovieDB {
 		int ratingCount = 0;
 		double ratingAvg = 0.0;
 		isMatch = false;
-		
-
 	}
+	
 	//this method reads from the movie database and returns the total number of records found
 	public static int readDatabaseSize() {
 		
@@ -140,14 +140,10 @@ public class MovieDB {
 		return movie;
 	}
 		
-	// this method searches through movie objects and sets instance variable 'isMatch' to true before returning the updated object array
-	//TODO search logic needs to be updated to support wildcards
+	// this method searches through movie objects and sets instance variable 'isMatch' to true for matching records
+	//TODO search logic needs to be updated so it is case insensitive 
 	
-	public static MovieDB[] searchMovies(MovieDB[] searchObjects, String searchCriteria, int searchType, boolean searchRestricted) {
-		
-		// create local references for object array
-		MovieDB[] movie;
-		movie = searchObjects;
+	public static MovieDB[] searchMovies(MovieDB[] movie, String searchCriteria, int searchType, boolean searchRestricted) {
 		
 		// clear results from any past searches in current session
 		clearResults(movie);
@@ -155,22 +151,22 @@ public class MovieDB {
 		// loop through object array to find matching titles 
 		for (int i = 0; i < movieCount; i++) {
 			
-			// check for age restricted titles 
+			// check for and filter age restricted titles 
 			if (searchRestricted == true && movie[i].ageRestricted == true) continue;
 			
 			// perform search
 			switch (searchType) {
 			case 0: // title search 
-				if(movie[i].movieTitle == searchCriteria) movie[i].isMatch = true;
+				if(movie[i].movieTitle.contains(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 1: // year search
 				if(movie[i].movieYear == Integer.parseInt(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 2: // search genre
-				if(movie[i].movieGenre == searchCriteria) movie[i].isMatch = true;
+				if(movie[i].movieGenre.equals(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 3: // search cast
-				if(movie[i].movieCast == searchCriteria) movie[i].isMatch = true;
+				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true;
 				break;
 			}
 			
@@ -180,11 +176,7 @@ public class MovieDB {
 	}
 	
 	// this method sets the isMatch attribute to 'false' for all objects in the specified array
-	public static void clearResults (MovieDB[] searchObjects) {
-		
-		// create local references for object array
-		MovieDB[] movie;
-		movie = searchObjects;
+	public static void clearResults (MovieDB[] movie) {
 		
 		// loop through all objects in array and set isMatch to false
 		for(int i = 0; i < movieCount; i++) {
@@ -193,11 +185,7 @@ public class MovieDB {
 		
 	}
 	// this method adjusts ratings based on new rating provided
-	public static void updateRating (MovieDB[] searchObjects, int movieIndex, int rating) {
-		
-		// create local references for object array
-		MovieDB[] movie;
-		movie = searchObjects;
+	public static void updateRating (MovieDB[] movie, int movieIndex, int rating) {
 		
 		// adjust in memory
 		movie[movieIndex].ratingTotal = movie[movieIndex].ratingTotal + rating;
@@ -207,7 +195,7 @@ public class MovieDB {
 			movie[movieIndex].ratingAvg = (double)movie[movieIndex].ratingTotal / (double)movie[movieIndex].ratingCount;
 		}
 			
-		// store to file for next run
+		// write updated rating data to file
 		overwriteDatabase(movie);
 		
 	}
@@ -241,11 +229,7 @@ public class MovieDB {
 	}
 	
 	// this method overwrites the movie database with new file contents
-	public static void overwriteDatabase (MovieDB[] newDataObjects) {
-		
-		// create local object array 
-		MovieDB[] movie;
-		movie = newDataObjects;
+	public static void overwriteDatabase (MovieDB[] movie) {
 		
 		// create strings to be output to external file from objects in local array
 		String[] newFileContents = new String [movieCount];
@@ -281,4 +265,67 @@ public class MovieDB {
 		}
 	}
 
+	
+	/* 
+	 *
+	 * The following contains the setter and getter methods for this class 
+	 *
+	 */
+	
+	public void setTitle(String movieTitle) {
+		this.movieTitle = movieTitle;
+	}
+	
+	public void setYear(int movieYear) {
+		this.movieYear = movieYear;
+	}
+	
+	public void setGenre(String movieGenre) {
+		this.movieGenre = movieGenre;
+	}
+	
+	public void setCast(String movieCast) {
+		this.movieCast = movieCast;
+	}
+	
+	public void setDescription(String movieDescription) {
+		this.movieDescription = movieDescription;
+	}
+	
+	public void setRestriction(boolean ageRestricted) {
+		this.ageRestricted = ageRestricted;
+	}
+
+	public static int getMovieCount() {
+		return movieCount;
+	}
+	
+	public String getTitle() {
+		return movieTitle;
+	}
+		
+	public int getYear() {
+		return movieYear;
+	}
+		
+	public String getGenre() {
+		return movieGenre;
+	}
+		
+	public String getCast() {
+		return movieCast;
+	}
+		
+	public String getDescription() {
+		return movieDescription;
+	}
+		
+	public double getRating() {
+		return ratingAvg;
+	}
+
+	public boolean getMatch() {
+		return isMatch;
+	}
+		
 }
