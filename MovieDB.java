@@ -10,11 +10,11 @@ public class MovieDB {
 	private static int movieCount;
 	
 	// declaring instance variables
-	// TODO Add director field
 	private String movieTitle;
 	private int movieYear;
 	private String movieGenre;
 	private String movieCast;
+	private String movieDirector;
 	private String movieDescription;
 	private boolean ageRestricted;
 	private int ratingTotal;
@@ -22,14 +22,19 @@ public class MovieDB {
 	private double ratingAvg;
 	private boolean isMatch;
 	
-	// movie object constructor (used when reading from external datafile)
-	public MovieDB(String movieTitle, String movieYear, String movieGenre, String movieCast, 
+	/*
+	 * Movie object constructor 
+	 * This constructor is used when reading movie data from the external data file
+	 * 
+	 */
+	public MovieDB(String movieTitle, String movieYear, String movieGenre, String movieCast, String movieDirector,
 			String movieDescription, String ageRestricted, String ratingTotal, String ratingCount) {
 		
 		this.movieTitle = movieTitle;
 		this.movieYear = Integer.parseInt(movieYear);
 		this.movieGenre = movieGenre;
 		this.movieCast = movieCast;
+		this.movieDirector = movieDirector;
 		this.movieDescription = movieDescription;
 		
 		// set ageRestricted attribute based on integer value in external database 
@@ -52,15 +57,20 @@ public class MovieDB {
 		isMatch = false;
 	
 	}
-	
-	// movie object constructor (used when creating a new movie object, prior to appending it to the database)
-	public MovieDB(String movieTitle, int movieYear, String movieGenre, String movieCast, 
+
+	/*
+	 * Movie object constructor 
+	 * This constructor is used when creating a new movie object, prior to appending it to the database
+	 * 
+	 */
+	public MovieDB(String movieTitle, int movieYear, String movieGenre, String movieCast, String movieDirector,
 			String movieDescription, boolean ageRestricted) {
 		
 		this.movieTitle = movieTitle;
 		this.movieYear = movieYear;
 		this.movieGenre = movieGenre;
 		this.movieCast = movieCast;
+		this.movieDirector = movieDirector;
 		this.movieDescription = movieDescription;
 		this.ageRestricted = ageRestricted;
 		int ratingTotal = 0;
@@ -70,7 +80,7 @@ public class MovieDB {
 	}
 	
 	//this method reads from the movie database and returns the total number of records found
-	public static int readDatabaseSize() {
+	private static int readDatabaseSize() {
 		
 		// reset dbRecordCount class variable
 		dbRecordCount = 0;
@@ -102,6 +112,7 @@ public class MovieDB {
 		 *  year	
 		 *  genre	
 		 *  cast (comma delimited list)
+		 *  director
 		 *  description	
 		 *  restricted	
 		 *  rating total
@@ -116,7 +127,7 @@ public class MovieDB {
 		// read from external text file
 		int lineNumber = 0;
 		String currentLine;
-		String [] currentLineField = new String [8];
+		String [] currentLineField = new String [10];
 		
 		try {
 			
@@ -126,12 +137,14 @@ public class MovieDB {
 				
 				// create new object
 				movie[lineNumber] = new MovieDB(currentLineField[0], currentLineField[1], currentLineField[2], 
-						currentLineField[3], currentLineField[4], currentLineField[5], currentLineField[6], currentLineField[7]);
+						currentLineField[3], currentLineField[4], currentLineField[5], 
+						currentLineField[6], currentLineField[7], currentLineField[8]);
 				
 				lineNumber++;
 				movieCount++;
+				
 			}
-			
+		
 			br.close();
 				
 			} catch (IOException e){
@@ -141,9 +154,15 @@ public class MovieDB {
 		return movie;
 	}
 		
-	// this method searches through movie objects and sets instance variable 'isMatch' to true for matching records
-	//TODO search logic needs to be updated so it is case insensitive 
-	
+	/* 
+	 * This method searches through movie objects and sets instance variable 'isMatch' to true for matching records
+	 *
+	 * Method expects the following inputs: an array of MovieDB objects, search criteria, integer indicating the search type, 
+	 * boolean flag to indicate if age restricted results should be returned  
+     * 
+	 * The following 'search types' are supported: 0 = title, 1 = year, 2 = genre, 3 = cast, 4 = director
+	 * 
+	 */
 	public static MovieDB[] searchMovies(MovieDB[] movie, String searchCriteria, int searchType, boolean searchRestricted) {
 		
 		// clear results from any past searches in current session
@@ -158,16 +177,19 @@ public class MovieDB {
 			// perform search
 			switch (searchType) {
 			case 0: // title search 
-				if(movie[i].movieTitle.contains(searchCriteria)) movie[i].isMatch = true;
+				if(movie[i].movieTitle.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
 				break;
 			case 1: // year search
 				if(movie[i].movieYear == Integer.parseInt(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 2: // search genre
-				if(movie[i].movieGenre.equals(searchCriteria)) movie[i].isMatch = true;
+				if(movie[i].movieGenre.equals(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
 				break;
 			case 3: // search cast
-				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true; // .contains is case sensiive! add regex
+				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
+				break;
+			case 4: // search director
+				if(movie[i].movieDirector.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
 				break;
 			}
 			
@@ -177,7 +199,7 @@ public class MovieDB {
 	}
 	
 	// this method sets the isMatch attribute to 'false' for all objects in the specified array
-	public static void clearResults (MovieDB[] movie) {
+	private static void clearResults (MovieDB[] movie) {
 		
 		// loop through all objects in array and set isMatch to false
 		for(int i = 0; i < movieCount; i++) {
@@ -185,7 +207,14 @@ public class MovieDB {
 		}
 		
 	}
-	// this method adjusts ratings based on new rating provided
+	/*
+	 * This method adjusts rating data based on new rating provided by user
+	 * ratingTotal and ratingCount values are updated so a new average rating can be calcualted
+	 *
+	 * Method expects the following arguments: an array of MoivieDB objects to be passed, 
+	 * index of movie object to have rating updated, new rating provided by user 
+	 * 
+	 */
 	public static void updateRating (MovieDB[] movie, int movieIndex, int rating) {
 		
 		// adjust in memory
@@ -201,7 +230,12 @@ public class MovieDB {
 		
 	}
 	
-	// this method forms a new database record from the movie object provided and appends this record as new line to the database
+	/* 
+	 * This method forms a new database record from the movie object provided and appends this record as new line to the database
+	 *  
+	 * Method expects a single MovieDB object to be passed, containing all attributes defined as instance variables in the MovieDB class
+	 * 
+	 */
 	public static void appendDatabase (MovieDB newMovie) {
 			
 		// check ageRestricted field 
@@ -213,6 +247,7 @@ public class MovieDB {
 				+ newMovie.movieYear + "\t"  
 				+ newMovie.movieGenre + "\t" 
 				+ newMovie.movieCast + "\t" 
+				+ newMovie.movieDirector + "\t"
 				+ newMovie.movieDescription + "\t" 
 				+ ageRestricted + "\t" 
 				+ newMovie.ratingTotal + "\t"
@@ -229,22 +264,29 @@ public class MovieDB {
 		}
 	}
 	
-	// this method overwrites the movie database with new file contents
+	/*
+	 * This method overwrites the movie database with new file contents
+	 *
+	 * Method expects an array of MovieDB objects to be passed, with each object containing all attributes 
+	 * defined as instance variables in the MovieDB class
+	 * 
+	 */
 	public static void overwriteDatabase (MovieDB[] movie) {
 		
-		// create strings to be output to external file from objects in local array
+		// create array of strings to be output to external file from objects in MovieDB array
 		String[] newFileContents = new String [movieCount];
-		String restrictionValue = "0";
-				
+		
 		for (int i = 0; i < movieCount; i++) {
 			
-			//set age restriction 
+			//set age restriction value
+			String restrictionValue = "0";
 			if (movie[i].ageRestricted == true) restrictionValue = "1";
 			
 			newFileContents[i] = movie[i].movieTitle + "\t" 
 			+ movie[i].movieYear + "\t"
 			+ movie[i].movieGenre + "\t"
 			+ movie[i].movieCast + "\t"
+			+ movie[i].movieDirector + "\t"
 			+ movie[i].movieDescription + "\t"
 			+ restrictionValue + "\t"
 			+ movie[i].ratingTotal + "\t"
@@ -267,11 +309,7 @@ public class MovieDB {
 	}
 
 	
-	/* 
-	 *
-	 * The following contains the setter and getter methods for this class 
-	 *
-	 */
+	// Setter and Getter methods defined below 
 	
 	public void setTitle(String movieTitle) {
 		this.movieTitle = movieTitle;
@@ -287,6 +325,10 @@ public class MovieDB {
 	
 	public void setCast(String movieCast) {
 		this.movieCast = movieCast;
+	}
+	
+	public void setDirector(String movieDirector) {
+		this.movieDirector = movieDirector;
 	}
 	
 	public void setDescription(String movieDescription) {
@@ -315,6 +357,10 @@ public class MovieDB {
 		
 	public String getCast() {
 		return movieCast;
+	}
+	
+	public String getDirector() {
+		return movieDirector;
 	}
 		
 	public String getDescription() {
