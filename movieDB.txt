@@ -1,23 +1,9 @@
-New Title0.427232815938108	2020	comedy	Will Smith, Julia Roberts	A fun comedy about two bank tellers	0	45	12
-movie2	1998	action	Bruce Willis, Bette Midler	When a bank is robbed, who will stop the runaway train?	1	240	30
-movie3	2016	drama	Anne Hathaway, Simon Simonons	Romance at the bakery	1	275	34
-movie3 part 2	2016	drama	Anne Hathaway, Simon Simonons	Even more romance at the bakery!	1	52	44
-A new movie0.7911200072110885	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 201	1	0	0
-A new movie0.37132642547869044	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.09828083929569498	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.814572615925025	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.36434147433513775	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.2129219724075362	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.04972525509155701	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.002512589679226407	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.3779541757447422	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.6313218764381886	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.19170141413996888	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.3114138478891747	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.9637171278503447	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.36527595120693956	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.40862325339898664	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.2932237161783947	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.016990932678512705	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.14729093978635943	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	1	0	0
-A new movie0.7741414576068603	2021	Comedy	James Franco, Sanda Bullock, Some Guy	A new movie due to come out in 2021	0	0	0
+New Title79	2020	comedy	Will Smith, Julia Roberts	Steven Spielberg	A fun comedy about two bank tellers	0	45	12
+movie2	1998	action	Bruce Willis, Bette Midler	Martin Scorsese	When a bank is robbed, who will stop the runaway train?	1	240	30
+movie3	2016	drama	Anne Hathaway, Simon Simonons	Steven Spielberg	Romance at the bakery	0	575	34
+movie3 part 2	2016	drama	Anne Hathaway, Simon Simonons	Martin Scorsese	Even more romance at the bakery!	0	52	44
+A new movie675	2021	Comedy	James Franco, Sanda Bullock, Some Guy	Martin Scorsese	A new movie due to come out in 2021	1	0	0
+A new movie991	2021	Comedy	James Franco, Sanda Bullock, Some Guy	Martin Scorsese	A new movie due to come out in 2021	1	0	0
+A new movie208	2021	Comedy	James Franco, Sanda Bullock, Some Guy	Martin Scorsese	A new movie due to come out in 2021	1	0	0
+A new movie865	2021	Comedy	James Franco, Sanda Bullock, Some Guy	Martin Scorsese	A new movie due to come out in 2021	1	0	0
+A new movie510	2021	Comedy	James Franco, Sanda Bullock, Some Guy	Martin Scorsese	A new movie due to come out in 2021	0	0	0
