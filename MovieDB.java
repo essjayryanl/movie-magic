@@ -117,7 +117,6 @@ public class MovieDB {
 		 *  restricted	
 		 *  rating total
 		 *  rating count
-		 *
 		 */
 		
 		// create object reference variable
@@ -177,19 +176,19 @@ public class MovieDB {
 			// perform search
 			switch (searchType) {
 			case 0: // title search 
-				if(movie[i].movieTitle.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
+				if(movie[i].movieTitle.toLowerCase().contains(searchCriteria.toLowerCase())) movie[i].isMatch = true;
 				break;
 			case 1: // year search
 				if(movie[i].movieYear == Integer.parseInt(searchCriteria)) movie[i].isMatch = true;
 				break;
 			case 2: // search genre
-				if(movie[i].movieGenre.equals(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
+				if(movie[i].movieGenre.toLowerCase().contains(searchCriteria.toLowerCase())) movie[i].isMatch = true;
 				break;
 			case 3: // search cast
-				if(movie[i].movieCast.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
+				if(movie[i].movieCast.toLowerCase().contains(searchCriteria.toLowerCase())) movie[i].isMatch = true;
 				break;
 			case 4: // search director
-				if(movie[i].movieDirector.contains(searchCriteria)) movie[i].isMatch = true; // TODO .contains is case sensiive! add regex
+				if(movie[i].movieDirector.toLowerCase().contains(searchCriteria.toLowerCase())) movie[i].isMatch = true;
 				break;
 			}
 			
@@ -237,7 +236,7 @@ public class MovieDB {
 	 * 
 	 */
 	public static void appendDatabase (MovieDB newMovie) {
-			
+		
 		// check ageRestricted field 
 		String ageRestricted = "0";
 		if (newMovie.ageRestricted == true) ageRestricted = "1";
