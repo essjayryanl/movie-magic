@@ -21,6 +21,7 @@ public class MovieDB {
 	private int ratingCount;
 	private double ratingAvg;
 	private boolean isMatch;
+	private boolean toDelete;
 	
 	/*
 	 * Movie object constructor 
@@ -55,6 +56,7 @@ public class MovieDB {
 		}
 		
 		isMatch = false;
+		toDelete = false;
 	
 	}
 
@@ -77,6 +79,7 @@ public class MovieDB {
 		int ratingCount = 0;
 		double ratingAvg = 0.0;
 		isMatch = false;
+		toDelete = false;
 	}
 	
 	//this method reads from the movie database and returns the total number of records found
@@ -241,7 +244,7 @@ public class MovieDB {
 		String ageRestricted = "0";
 		if (newMovie.ageRestricted == true) ageRestricted = "1";
 		
-		// parse array to form the line to be written to the database file
+		// parse object attributes to form the line to be written to the database file
 		String newLine = newMovie.movieTitle + "\t" 
 				+ newMovie.movieYear + "\t"  
 				+ newMovie.movieGenre + "\t" 
@@ -272,26 +275,40 @@ public class MovieDB {
 	 */
 	public static void overwriteDatabase (MovieDB[] movie) {
 		
+		// determine number of records to be written to file
+		int writeIndex = 0;
+		int writeCount = movieCount;
+		
+		for (int i = 0; i < movieCount; i++) {
+			if (movie[i].toDelete == true) writeCount--;
+		}
+		
 		// create array of strings to be output to external file from objects in MovieDB array
-		String[] newFileContents = new String [movieCount];
+		String[] newFileContents = new String [writeCount];
 		
 		for (int i = 0; i < movieCount; i++) {
 			
-			//set age restriction value
-			String restrictionValue = "0";
-			if (movie[i].ageRestricted == true) restrictionValue = "1";
+			// check if object has previously been flagged for deletion (this files won't be written to file)
+			if (movie[i].toDelete == false) {
 			
-			newFileContents[i] = movie[i].movieTitle + "\t" 
-			+ movie[i].movieYear + "\t"
-			+ movie[i].movieGenre + "\t"
-			+ movie[i].movieCast + "\t"
-			+ movie[i].movieDirector + "\t"
-			+ movie[i].movieDescription + "\t"
-			+ restrictionValue + "\t"
-			+ movie[i].ratingTotal + "\t"
-			+ movie[i].ratingCount;
-		}
+				//set age restriction value
+				String restrictionValue = "0";
+				if (movie[i].ageRestricted == true) restrictionValue = "1";
 				
+				newFileContents[writeIndex] = movie[i].movieTitle + "\t" 
+				+ movie[i].movieYear + "\t"
+				+ movie[i].movieGenre + "\t"
+				+ movie[i].movieCast + "\t"
+				+ movie[i].movieDirector + "\t"
+				+ movie[i].movieDescription + "\t"
+				+ restrictionValue + "\t"
+				+ movie[i].ratingTotal + "\t"
+				+ movie[i].ratingCount;
+			
+				writeIndex++;
+			}
+		}
+		
 		// write to file
 		try {
 			PrintWriter wr = new PrintWriter( new BufferedWriter (new FileWriter(dbFileName, false)));
@@ -338,6 +355,10 @@ public class MovieDB {
 		this.ageRestricted = ageRestricted;
 	}
 
+	public void setDeleteFlag(boolean toDelete) {
+		this.toDelete = toDelete;
+	}
+	
 	public static int getMovieCount() {
 		return movieCount;
 	}
@@ -373,5 +394,8 @@ public class MovieDB {
 	public boolean getMatch() {
 		return isMatch;
 	}
-		
+	
+	public boolean getDeleteFlag() {
+		return toDelete;
+	}
 }
