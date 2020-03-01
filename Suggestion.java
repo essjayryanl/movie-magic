@@ -142,23 +142,22 @@ public class Suggestion {
 	 * 
 	 */
 	public static void appendDatabase (Suggestion newSuggestion) {
-		
 		// check ageRestricted field 
 		String ageRestricted = "0";
 		if (newSuggestion.ageRestricted == true) ageRestricted = "1";
 		
-		// parse array to form the line to be written to the database file
+		// parse object attributes to form the single line to be appended to the database file
 		String newLine = newSuggestion.movieTitle + "\t" 
-			+ newSuggestion.movieYear + "\t"  
-			+ newSuggestion.movieGenre + "\t" 
-			+ newSuggestion.movieCast + "\t" 
-			+ newSuggestion.movieDirector + "\t"
-			+ newSuggestion.movieDescription + "\t"
-			+ ageRestricted;
+				+ newSuggestion.movieYear + "\t"  
+				+ newSuggestion.movieGenre + "\t" 
+				+ newSuggestion.movieCast + "\t" 
+				+ newSuggestion.movieDirector + "\t"
+				+ newSuggestion.movieDescription + "\t" 
+				+ ageRestricted;
 		
 		// write to external database 
 		try {
-			PrintWriter wr = new PrintWriter( new BufferedWriter (new FileWriter(dbFileName, true)));
+			PrintWriter wr = new PrintWriter( new BufferedWriter (new FileWriter("SuggestionDB.txt", true)));
 			wr.print(newLine);
 			wr.close();
 			
@@ -179,7 +178,9 @@ public class Suggestion {
 	public static void overwriteDatabase (Suggestion[] suggestions) {
 		
 	// determine number of records to be written to file
+	int writeIndex = 0;
 	int writeCount = suggestionCount;
+	
 	for (int i = 0; i < suggestionCount; i++) {
 		if (suggestions[i].toDelete == true) writeCount--;
 	}
@@ -187,14 +188,14 @@ public class Suggestion {
 	// create array of strings to be output to external file from objects in Suggestion array
 	// only Suggestion objects with toDelete flag set to 'false' should be written to file
 	
-	int writeIndex = 0;
-	
 	String[] newFileContents = new String [writeCount];
 	
-		for (int i = 0; i < writeCount; i++) {
+		// parse object attributes to construct array of strings to be written to file
+		for (int i = 0; i < suggestionCount; i++) {
 			
+			// check if object has previously been flagged for deletion (this files won't be written to file)
 			if (suggestions[i].toDelete == false) {
-			
+							
 				//set age restriction value
 				String restrictionValue = "0";
 				if (suggestions[i].ageRestricted == true) restrictionValue = "1";
@@ -207,12 +208,11 @@ public class Suggestion {
 				+ suggestions[i].movieDescription + "\t"
 				+ restrictionValue;
 				
-				writeIndex = writeIndex++;
-				System.out.println("Writing!");
+				writeIndex++;
 			}
 		}
 				
-		// write to file
+		// write string array to file
 		try {
 			PrintWriter wr = new PrintWriter( new BufferedWriter (new FileWriter(dbFileName, false)));
 			
